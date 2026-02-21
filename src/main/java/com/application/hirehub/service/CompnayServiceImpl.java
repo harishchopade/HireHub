@@ -2,7 +2,7 @@ package com.application.hirehub.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.application.hirehub.company.dto.CompanyDTO;
@@ -20,6 +20,7 @@ public class CompnayServiceImpl implements CompanyService {
 	
 	
 	private final Companyrepository companyrepository;
+	private final ModelMapper mapper;
 	
 	@Override
 	public List<Company> getAllCompanies() {
@@ -31,12 +32,13 @@ public class CompnayServiceImpl implements CompanyService {
 	public Company createComapny(CompanyDTO companyDTO) {
 		
 		if(companyrepository.existsByName(companyDTO.getName())) {
-			throw new ResourceAlreadyExits("Comapny with " +companyDTO.getName() + " this mail already exits please try different mail" );
+			throw new ResourceAlreadyExits("Comapny with " +companyDTO.getName() + " this mail already exits please try different name" );
 		}
 		
-		
-		
-		
+		Company company = mapper.map(companyDTO, Company.class);
+		companyrepository.save(company);
+		return company;
+	
 	}
 
 }
