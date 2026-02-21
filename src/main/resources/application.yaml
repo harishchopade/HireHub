@@ -1,3 +1,16 @@
 spring:
   application:
     name: hirehub
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hirehub
+    username: postgres
+    password: roo
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
