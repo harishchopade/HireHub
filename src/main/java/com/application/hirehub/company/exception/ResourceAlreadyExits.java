@@ -1,4 +1,4 @@
-package com.application.hirehub.exception;
+package com.application.hirehub.company.exception;
 
 public class ResourceAlreadyExits extends RuntimeException {
 
